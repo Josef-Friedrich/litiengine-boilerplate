@@ -1,0 +1,25 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>rocks.friedrich.litiengine</groupId>
+  <artifactId>litiengine</artifactId>
+  <version>1</version>
+
+  <properties>
+    <!-- BlueJ supports at least 17 -->
+    <!-- litiengine 0.6.0 needs at least 21  -->
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>de.gurkenlabs</groupId>
+      <artifactId>litiengine</artifactId>
+      <version>0.6.0</version>
+    </dependency>
+  </dependencies>
+
+</project>
