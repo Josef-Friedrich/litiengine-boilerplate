@@ -14,6 +14,8 @@ public class Program {
     Game.window().setResolution(Resolution.Ratio4x3.RES_1024x768);
 
     Game.screens().add(new GameScreen());
+    Game.screens().add(new FontScreen());
+    Game.screens().display("font");
     Game.start();
   }
 }

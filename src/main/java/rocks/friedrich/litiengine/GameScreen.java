@@ -3,6 +3,7 @@ package rocks.friedrich.litiengine;
 import de.gurkenlabs.litiengine.Game;
 
 import de.gurkenlabs.litiengine.gui.screens.Screen;
+
 import java.awt.Graphics2D;
 import java.awt.Color;
 
@@ -19,8 +20,5 @@ public class GameScreen extends Screen {
 
     public void render(Graphics2D g) {
         super.render(g);
-        Game.graphics().renderText(g, "Hello, LITIengine!", 100, 100);
-
     }
-
 }
