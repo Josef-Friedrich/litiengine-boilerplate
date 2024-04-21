@@ -7,12 +7,15 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.resources.Resources;
 
-public class FontScreen extends Screen {
-    public FontScreen() {
+public class FontExample extends Screen
+{
+    public FontExample()
+    {
         super("font");
     }
 
-    public void render(Graphics2D g) {
+    public void render(Graphics2D g)
+    {
         super.render(g);
         g.setFont(Resources.fonts().get("fonts/Jersey10-Regular.ttf", 32f));
         g.setColor(Color.GREEN);
@@ -21,4 +24,10 @@ public class FontScreen extends Screen {
         Game.graphics().renderText(g, "Font Test", 0, 0);
     }
 
+    public static void main(String[] args)
+    {
+        Game.init();
+        Game.screens().add(new FontExample());
+        Game.start();
+    }
 }

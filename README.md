@@ -10,11 +10,9 @@ sudo update-alternatives --config java
 
 # Text setzen
 
-Schriftdatei in folgendenden Ordner kopieren: `src/main/resources/fonts/Jersey10-Regular.ttf`
+Schriftdatei in folgendenden Ordner kopieren: `./src/main/resources/fonts/Jersey10-Regular.ttf`
 
 ```java
-package rocks.friedrich.litiengine;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -22,18 +20,28 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.resources.Resources;
 
-public class FontScreen extends Screen {
-    public FontScreen() {
+public class FontExample extends Screen
+{
+    public FontExample()
+    {
         super("font");
     }
 
-    public void render(Graphics2D g) {
+    public void render(Graphics2D g)
+    {
         super.render(g);
         g.setFont(Resources.fonts().get("fonts/Jersey10-Regular.ttf", 32f));
         g.setColor(Color.GREEN);
         Game.graphics().renderText(g, "Hello, LITIengine!", 0, 100);
         g.setColor(Color.BLUE);
         Game.graphics().renderText(g, "Font Test", 0, 0);
+    }
+
+    public static void main(String[] args)
+    {
+        Game.init();
+        Game.screens().add(new FontExample());
+        Game.start();
     }
 }
 ```
@@ -91,37 +99,81 @@ Examples for screens include: Menu Screen, Credits Screen, Game Screen, Inventor
 Example usages:
 
 ```java
-// a custom screen implementation that renders "Test text" on the screen
-public class TestScreen extends GameScreen {
-  public TestScreen() {
-    super("TEST");
-  }
-  @Override
-  public void render(final Graphics2D g) {
-    super.render(g);
-    TextRenderer.render(g, "Test text", 100, 100);
-  }
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+
+import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.gui.screens.Resolution;
+import de.gurkenlabs.litiengine.gui.screens.Screen;
+import de.gurkenlabs.litiengine.input.Input;
+
+class RedScreen extends Screen
+{
+    public RedScreen()
+    {
+        super("red");
+    }
+
+    @Override
+    public void prepare()
+    {
+        super.prepare();
+        Game.window().getRenderComponent()
+                .setBackground(Color.decode("#ff0000"));
+    }
+}
+
+class BlueScreen extends Screen
+{
+    public BlueScreen()
+    {
+        super("blue");
+    }
+
+    @Override
+    public void prepare()
+    {
+        super.prepare();
+        Game.window().getRenderComponent()
+                .setBackground(Color.decode("#0000ff"));
+    }
+}
+
+public class ScreenExample
+{
+    public static void main(String[] args)
+    {
+        Game.init(args);
+        Game.window().setResolution(Resolution.Ratio4x3.RES_1024x768);
+        Game.screens().add(new RedScreen());
+        Game.screens().add(new BlueScreen());
+        Input.keyboard().onKeyTyped(KeyEvent.VK_1,
+                e -> Game.screens().display("red"));
+        Input.keyboard().onKeyTyped(KeyEvent.VK_2,
+                e -> Game.screens().display("blue"));
+        Game.start();
+    }
 }
 ```
 
-```java
-import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.gui.screens.Resolution;
+# Tastatur-Eingabe
 
-public class Program {
+```java
+import java.awt.event.KeyEvent;
+
+import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.input.Input;
+
+public class KeyboardInput {
 
   public static void main(String[] args) {
-    // add some custom screens to the ScreenManager
-    Game.screens().add(new MenuScreen());
-    Game.screens().add(new IngameScreen());
-    Game.screens().add(new EndOfLevelScreen());
+    Game.init();
 
-    // display the screen with the name "MENU"
-    Game.screens().display("MENU");
+    Input.keyboard().onKeyPressed(KeyEvent.VK_ESCAPE, e -> System.exit(0));
 
-    // print the name of the currently active screen
-    System.out.println("Currently active screen: " + Game.screens().current().getName());
-
+    Input.keyboard().onKeyPressed(KeyEvent.VK_1, e -> System.out.println("pressed"));
+    Input.keyboard().onKeyTyped(KeyEvent.VK_2, e -> System.out.println("typed"));
+    Input.keyboard().onKeyReleased(KeyEvent.VK_3, e -> System.out.println("released"));
     Game.start();
   }
 }

@@ -1,10 +1,11 @@
 {
   "java.configuration.updateBuildConfiguration": "automatic",
+  "java.format.settings.url": ".eclipse-formatter/school.xml",
   "java.configuration.runtimes": [
-  {
-    "name": "JavaSE-21",
-    "path": "/usr/lib/jvm/java-21-openjdk-amd64",
-    "default":  true
-   }
-]
+    {
+      "name": "JavaSE-21",
+      "path": "/usr/lib/jvm/java-21-openjdk-amd64",
+      "default": true
+    }
+  ]
 }
