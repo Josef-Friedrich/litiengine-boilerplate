@@ -8,6 +8,24 @@ sudo apt install openjdk-21-jdk
 sudo update-alternatives --config java
 ```
 
+## gradle
+
+./gradlew build -Dorg.gradle.java.home=/usr/lib/jvm/java-21-openjdk-amd64
+
+## vscode
+
+```json
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "/usr/lib/jvm/java-21-openjdk-amd64",
+      "default": true
+    }
+  ],
+  "java.jdt.ls.java.home": "/usr/lib/jvm/java-21-openjdk-amd64"
+```
+
+
 # Text setzen
 
 Schriftdatei in folgendenden Ordner kopieren: `./src/main/resources/fonts/Jersey10-Regular.ttf`
