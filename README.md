@@ -15,6 +15,7 @@ sudo update-alternatives --config java
 ## vscode
 
 ```json
+{
   "java.configuration.runtimes": [
     {
       "name": "JavaSE-21",
@@ -22,7 +23,9 @@ sudo update-alternatives --config java
       "default": true
     }
   ],
-  "java.jdt.ls.java.home": "/usr/lib/jvm/java-21-openjdk-amd64"
+  "java.jdt.ls.java.home": "/usr/lib/jvm/java-21-openjdk-amd64",
+  "java.gradle.buildServer.enabled": "off"
+}
 ```
 
 
